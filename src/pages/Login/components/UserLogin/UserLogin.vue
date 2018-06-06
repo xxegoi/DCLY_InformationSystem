@@ -7,7 +7,7 @@
       </h2>
       <div class="form-container">
         <h4 class="form-title">登录</h4>
-        <el-form ref="form" :model="user" label-width="0">
+        <el-form ref="form" :model="user" label-width="0" >
           <div class="form-items">
             <el-row class="form-item">
               <el-col>
@@ -37,7 +37,7 @@
               </el-col>
             </el-row>
             <el-row class="form-item">
-              <el-button type="primary" class="submit-btn" size="small" @click="submitBtn">
+              <el-button type="primary" native-type="submit" class="submit-btn" size="small" @click="submitBtn">
                 登 录
               </el-button>
             </el-row>

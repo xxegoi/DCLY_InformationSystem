@@ -38,7 +38,7 @@ export default {
         begindate: this.$store.state.YzkTrack.begindate,
         enddate: this.$store.state.YzkTrack.enddate,
         page: this.currentPage,
-        size: this.pageSize,
+        pagesize: this.pageSize,
         fgh: this.$store.state.YzkTrack.fgh,
         orgname: this.$store.state.YzkTrack.org
       });

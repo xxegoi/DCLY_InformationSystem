@@ -10,6 +10,8 @@ import TestData from './pages/TestData';
 import NotPermission from './pages/NotPermission';
 import YzkTrack from './pages/YzkTrack';
 import ServerException from './pages/ServerException';
+
+import RoleManage from './pages/RoleManage';
 import NotFound from './pages/NotFound';
 
 const routerConfig = [
@@ -42,6 +44,11 @@ const routerConfig = [
     path: '/ServerException',
     layout: HeaderAsideLayout,
     component: ServerException,
+  },
+  {
+    path: '/RoleManage',
+    layout: HeaderAsideLayout,
+    component: RoleManage,
   },
   {
     path: '*',

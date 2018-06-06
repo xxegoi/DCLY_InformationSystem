@@ -15,6 +15,11 @@ const asideMenuConfig = [
     path: '/YZKTrack',
     icon: 'home',
   },
+  {
+    name: '\u7528\u6237\u7BA1\u7406',
+    path: '/RoleManage',
+    icon: 'home',
+  },
 ];
 
 export { headerMenuConfig, asideMenuConfig };

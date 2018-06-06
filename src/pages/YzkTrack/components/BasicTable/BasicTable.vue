@@ -78,7 +78,7 @@ export default {
 <style>
 .basic-table {
 }
-.process>.el-step__head>.el-step__icon{
+.process>.el-step__head>.el-step__icon,.process>.el-step__main>.el-step__title{
   border-color:rgb(51, 125, 236);
   color :rgb(51, 125, 236);
 }

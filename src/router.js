@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import routerConfig from './routerConfig';
+import axios from './axios';
+import qs from 'querystring';
 
 /**
  * 将路由配置扁平化
@@ -49,15 +51,16 @@ const routes = recursiveRouterConfig(routerConfig);
 
 Vue.use(Router);
 
-const router=new Router({routes});
+const router = new Router({ routes });
 
-router.beforeEach((to,from,next)=>{
-  var token=sessionStorage.getItem('token');
-  if(!token&&to.fullPath!=='/Login'){
+router.beforeEach((to, from, next) => {
+  var token = sessionStorage.getItem('token');
+  if (!token && to.fullPath !== '/Login') {
     next('/Login');
     return;
-  }
+  } 
   next();
 })
+
 
 export default router;
