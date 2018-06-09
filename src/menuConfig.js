@@ -20,6 +20,12 @@ const asideMenuConfig = [
     path: '/RoleManage',
     icon: 'home',
   },
+  {
+    name: '\u8FD0\u8F6C\u5361\u4FE1\u606F\u67E5\u8BE2',
+    path: '/YzkList',
+    icon: 'home',
+  },
+  
 ];
 
 export { headerMenuConfig, asideMenuConfig };

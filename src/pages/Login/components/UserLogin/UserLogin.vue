@@ -37,7 +37,7 @@
               </el-col>
             </el-row>
             <el-row class="form-item">
-              <el-button type="primary" native-type="submit" class="submit-btn" size="small" @click="submitBtn">
+              <el-button type="primary" :loading="loading" native-type="submit" class="submit-btn" size="small" @click="submitBtn">
                 登 录
               </el-button>
             </el-row>
@@ -58,20 +58,21 @@
 </template>
 
 <script>
-import BasicContainer from '@vue-materials/basic-container';
+import BasicContainer from "@vue-materials/basic-container";
 const backgroundImage =
-  'https://img.alicdn.com/tfs/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png';
+  "https://img.alicdn.com/tfs/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png";
 export default {
   components: { BasicContainer },
-  name: 'UserLogin',
+  name: "UserLogin",
 
   data() {
     return {
       backgroundImage: backgroundImage,
       user: {
-        username: '',
-        password: '',
+        username: "",
+        password: ""
       },
+      loading: false
     };
   },
 
@@ -79,40 +80,44 @@ export default {
 
   methods: {
     submitBtn() {
-      this.$refs['form'].validate((valid) => {
+      this.$refs["form"].validate(valid => {
         if (valid) {
+          this.loading = true;
           this.$axios({
-            url:'/api/account/login',
-            method:'post',
-            data:this.$qs.stringify({
-              UserName:this.user.username,
-              PassWord:this.user.password
+            url: "/api/account/login",
+            method: "post",
+            data: this.$qs.stringify({
+              UserName: this.user.username,
+              PassWord: this.user.password
             })
-          }).then(res=>{
-            if(res.data.Status=='fail'){
-              this.$message.error(res.data.Data);
-            }
-            else{
-              sessionStorage.setItem('token',res.data.Data);
-              this.$store.commit('updateLoginUser',this.user.username);
-              localStorage.setItem('user',this.user.username);
-              this.$router.push('/');
-            }
-          }).catch(res=>{
-            // console.log(res.response.Status);
-            // console.log(res.ersponse.headers);
-            // console.log(res.response.data);
-
-            console.log(res);
           })
-
+            .then(res => {
+              if (res.data.Status == "fail") {
+                this.$message.error(res.data.Data);
+              } else {
+                sessionStorage.setItem("token", res.data.Data);
+                this.$store.commit("updateLoginUser", this.user.username);
+                localStorage.setItem("user", this.user.username);
+                setTimeout(() => {
+                  this.loading = false;
+                  this.$router.push("/");
+                }, 2000);
+              }
+            })
+            .catch(res => {
+              // console.log(res.response.Status);
+              // console.log(res.ersponse.headers);
+              // console.log(res.response.data);
+              this.loading = false;
+              console.log(res);
+            });
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import './UserLogin.scss';
+@import "./UserLogin.scss";
 </style>

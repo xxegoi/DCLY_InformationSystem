@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import routerConfig from './routerConfig';
 import axios from './axios';
 import qs from 'querystring';
+import { isNullOrUndefined } from 'util';
 
 /**
  * 将路由配置扁平化
@@ -55,7 +56,7 @@ const router = new Router({ routes });
 
 router.beforeEach((to, from, next) => {
   var token = sessionStorage.getItem('token');
-  if (!token && to.fullPath !== '/Login') {
+  if (isNullOrUndefined(token) && to.fullPath !== '/Login') {
     next('/Login');
     return;
   } 
