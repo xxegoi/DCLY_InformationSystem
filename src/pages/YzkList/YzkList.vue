@@ -1,16 +1,27 @@
 <template>
   <div className="yzk-list-page">
         <YzkQueryForm v-model="ruleForm" @submit="onSubmit"/>
-        <YzkTable />
+        <YzkTable @showDetail="onShowDetail"/>
         <el-pagination
           @size-change="sizeChange"
           @current-change="currentChange"
           :current-page="page"
-          :page-sizes="[20, 40, 80, 100]"
+          :page-sizes="[10, 50, 100]"
           :page-size="size"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total" background>
         </el-pagination>
+        <el-dialog
+          title="运转卡详细信息"
+          :visible.sync="yzkDetailVisiable"
+          fullscreen 
+          center
+          >
+          <YzkDetail :yzk="yzk"/>
+          <span slot="footer">
+            <el-button @click="yzkDetailVisiable= false">关 闭</el-button>
+          </span>
+        </el-dialog>
         
       </div>
 </template>
@@ -18,12 +29,15 @@
 <script>
 import YzkQueryForm from "./components/YzkQueryForm";
 import YzkTable from "./components/YzkTable";
+import YzkDetail from './components/YzkDetail';
+
 
 export default {
   name: "YzkList",
   components: {
     YzkQueryForm,
-    YzkTable
+    YzkTable,
+    YzkDetail
   },
   data() {
     return {
@@ -37,12 +51,16 @@ export default {
         fundNo: ""
       },
       page: 1,
-      size: 20,
-      total: 0
+      size: 10,
+      total: 0,
+      details:{},
+      yzkDetailVisiable:false,
+      yzk:{}
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(ruleform) {
+      this.ruleForm=ruleform;
       var data = this.$qs.stringify({
         begindate: this.ruleForm.daterange[0],
         enddate:this.ruleForm.daterange[1],
@@ -81,11 +99,15 @@ export default {
     },
     sizeChange(size) {
       this.size = size;
-      this.onSubmit();
+      this.onSubmit(this.ruleForm);
     },
     currentChange(page) {
       this.page = page;
-      this.onSubmit();
+      this.onSubmit(this.ruleForm);
+    },
+    onShowDetail(yzk){
+      this.yzk=yzk;
+      this.yzkDetailVisiable=true;
     }
   }
 };

@@ -2,7 +2,7 @@
     <el-autocomplete placeholder="客户名称" v-model="customer" 
     :fetch-suggestions="querySearchAsync" @change="handleSelect"
     @select="handleSelect" 
-    :trigger-on-focus="false"></el-autocomplete>
+    value="code" value-key="value" ></el-autocomplete>
 </template>
 
 <script>
@@ -40,11 +40,14 @@ export default {
           .catch(err => {
             console.log(err);
           });
+      }else{
+        
+          this.$emit("input",str);
+        
       }
     },
     handleSelect(item) {
-      this.customer = item.value;
-      this.$emit("input", this.customer);
+      this.$emit("input", item.value);
       this.$emit("change");
     }
   }

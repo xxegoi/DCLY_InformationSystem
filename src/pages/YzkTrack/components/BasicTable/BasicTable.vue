@@ -2,7 +2,7 @@
   <div className="basic-table">
     <basic-container>
       <el-table v-loading="this.$store.state.YzkTrack.loading" size="small"
-        :data="this.$store.state.YzkTrack.dataList" max-height="440"
+        :data="this.$store.state.YzkTrack.dataList" height="445"
         style="width: 100%">
         <el-table-column fixed="left"
           prop="FGH" align="center" 

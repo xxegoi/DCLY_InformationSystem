@@ -16,6 +16,8 @@
     "querystring": "^0.2.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
+    "vue-slicksort": "^0.1.8",
+    "vuedraggable": "^2.16.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

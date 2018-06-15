@@ -40,7 +40,7 @@ import Customer from "@/pages/YzkList/components/Customer.vue";
 
 export default {
   components: { BasicContainer, Customer },
-  name: "BasicForm",
+  name: "YzkQuery",
 
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$emit("submit");
+          this.$emit("submit",this.ruleForm);
         } else {
           console.log("error submit!!");
           return false;

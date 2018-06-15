@@ -10,12 +10,12 @@
       :show-timeout="200"
       background-color="#00142a"
       text-color="hsla(0, 0%, 100%, .65)"
-      active-text-color="#409EFF"
+      active-text-color="#409EFF" 
     >
       <template v-for="item in asideMenuConfig">
         <router-link v-if="!item.children" :to="item.path" :key="item.name">
           <el-menu-item :index="item.path">
-            <i v-if="item.icon" :class="item.icon"></i>
+            <i :class="item.icon"></i>
             <span v-if="item.name" slot="title">{{item.name}}</span>
           </el-menu-item>
         </router-link>
@@ -28,6 +28,7 @@
           <template v-for="child in item.children" v-if="!child.hidden">
             <router-link :to="item.path + child.path" :key="child.name">
               <el-menu-item :index="item.path + child.path">
+
                 <span v-if="child && child.name" slot="title">{{child.name}}</span>
               </el-menu-item>
             </router-link>

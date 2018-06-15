@@ -13,6 +13,7 @@ import ServerException from './pages/ServerException';
 
 import RoleManage from './pages/RoleManage';
 import YzkList from './pages/YzkList';
+import GylcManage from './pages/GylcManage';
 import NotFound from './pages/NotFound';
 
 const routerConfig = [
@@ -56,7 +57,11 @@ const routerConfig = [
     layout: HeaderAsideLayout,
     component: YzkList,
   },
-  
+  {
+    path: '/GylcManage',
+    layout: HeaderAsideLayout,
+    component: GylcManage,
+  },
   {
     path: '*',
     layout: HeaderAsideLayout,

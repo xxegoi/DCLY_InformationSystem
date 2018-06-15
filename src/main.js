@@ -7,7 +7,6 @@ import App from './App.vue';
 import router from './router';
 import axios from './axios';
 import qs from 'querystring';
-import vuex from 'vuex';
 import store from './store';
 
 Vue.use(ElementUI);

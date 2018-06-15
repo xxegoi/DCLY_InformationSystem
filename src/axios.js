@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import axios from 'axios';
 import router from './router';
 
@@ -32,7 +31,7 @@ http.interceptors.request.use(config => {
   return Promise.reject(err);
 })
 
-//请求验证不通过时的处理，返回登录页或提示权限不足，或服务器错误
+//请求异常时的处理，返回登录页或提示权限不足，或服务器错误
 http.interceptors.response.use(res => {
   return res;
 }, err => {
