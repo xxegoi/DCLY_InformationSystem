@@ -94,6 +94,7 @@ export default {
             .then(res => {
               if (res.data.Status == "fail") {
                 this.$message.error(res.data.Data);
+                this.loading=false;
               } else {
                 sessionStorage.setItem("token", res.data.Data);
                 this.$store.commit("updateLoginUser", this.user.username);

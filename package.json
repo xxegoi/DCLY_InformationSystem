@@ -12,7 +12,10 @@
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
     "element-ui": "^2.3.6",
+    "install": "^0.11.0",
     "normalize.css": "^8.0.0",
+    "npm": "^6.1.0",
+    "qs": "^6.5.2",
     "querystring": "^0.2.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
@@ -27,7 +30,7 @@
     "@vue/eslint-config-airbnb": "^3.0.0-beta.6",
     "axios": "^0.18.0",
     "eslint-plugin-vue": "^4.5.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.0",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13"
   },

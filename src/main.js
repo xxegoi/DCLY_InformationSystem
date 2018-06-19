@@ -6,7 +6,7 @@ import './styles/index.scss';
 import App from './App.vue';
 import router from './router';
 import axios from './axios';
-import qs from 'querystring';
+import qs from 'qs';
 import store from './store';
 
 Vue.use(ElementUI);
