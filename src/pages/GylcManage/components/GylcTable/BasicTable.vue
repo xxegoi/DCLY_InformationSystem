@@ -13,13 +13,13 @@
         
         <el-table-column  label="工艺流程" align="center">
           <template slot-scope="scope">
-            <el-steps align-center>
-              <el-step v-for="item in scope.row.WorkFlow"
+            <el-steps align-center :active="activeIndex" finish-status="success">
+              <el-step v-for="item in scope.row.workflow" 
                 :key="item.FIndex"
                 :title="item.FName"
-                :status="item.State"
                 >
               </el-step>
+              
             </el-steps>
           </template>
         </el-table-column>
@@ -28,7 +28,7 @@
           label="操作"
           width="200" align="center">
           <template slot-scope="scope" >
-            <el-button type="primary" size="small" @click="showModify(scope.row.WorkFlow)">修改</el-button>
+            <el-button type="primary" size="small" @click="showModify(scope.row.workflow)">修改</el-button>
             <el-button type="info" size="small">修改日志</el-button>
           </template>
         </el-table-column>
@@ -56,19 +56,18 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    activeIndex:{
+      type:Number
     }
   },
   methods: {
     showModify(WorkFlow) {
-      var activeIndex = 0;
-      WorkFlow.forEach(e => {
-        if (e.State !== "wait") {
-          activeIndex = activeIndex < e.FIndex ? e.FIndex : activeIndex;
-        }
-      });
-      this.$emit("showModify", activeIndex, WorkFlow);
+      this.$emit("showModify", WorkFlow);
     }
-  }
+  },
+  
+  
 };
 </script>
 

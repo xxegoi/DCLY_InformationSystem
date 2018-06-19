@@ -1,8 +1,7 @@
 import TableColumn from '@/Common/TableColumn';
 
 const columns={
-    FGH:"缸号",
-    
+    fgh:"缸号",
 }
 
 var cols=[]

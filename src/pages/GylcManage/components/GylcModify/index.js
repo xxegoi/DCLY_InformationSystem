@@ -1,3 +1,3 @@
-import GylcModidy from './GylcModidy';
+import GylcModidy from "./GylcModify";
 
 export default GylcModidy;
