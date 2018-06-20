@@ -3,7 +3,7 @@
         <el-col :span="8" >
             <el-input size="small" icon="el-icon-search" placeholder="输入工序名过滤" @change="GXFilter"></el-input>
               <el-row id="wps">
-                <draggable :list="wp" :name="'flip-list'" :duration="100" :options="{group:{name:'wf',pull:'clone',revertClone: true},sort:false}">
+                <draggable :list="wp" :name="'flip-list'" :duration="100" :options="{group:{name:'wf',pull:'clone',put:false,revertClone: true},sort:false}">
                     <div v-for="item in wp" :key="item.FID" class="wpsItem">
                       <span>{{item.FName}}</span></div>
                 </draggable>
@@ -12,20 +12,19 @@
         <el-col :span="16" >
           <el-input-number id="placholder" :min="1" :max="10" label=""></el-input-number>
           <el-row id="workflow">
-          <draggable @add="onAdd" :name="'flip-list'" :duration="100" :move="onMove" :list="wf" :options="{group:'wf',pull:'clone'}">
-                        <div style="width:350px"  v-for="(w,index) in wf" v-bind:key="w.FID">
-                          
-                          <div class="wfItem" >
+          <draggable @add="onAdd" :name="'flip-list'" :duration="100" :move="onMove" @start="drag=true" @end="drag=false" :list="wf" :options="{group:'wf',pull:'clone'}">
+              <transition-group :name="!drag?'workflowList':null" :css="true">
+                        <li class="wfItem"  v-for="(w,index) in wf" :key="w.WPID">
+                          <div class="wfItemHead" >
                              <i v-if="index<activeIndex" class="el-icon-success success"></i>
                              <i v-else-if="index==activeIndex" class="el-icon-info process"></i>
-                             <span>{{index+1}}</span>
                              <span>{{w.FName}}</span>
                           </div>
-                                  <el-button v-if="index>activeIndex" size="mini" class="deleteBtn" type="danger" @click="remove(index)">
-                                  删除
-                                </el-button>
-                                
-                         </div>
+                            <el-button v-if="index>activeIndex" size="mini" class="deleteBtn" type="danger" @click="remove(index)">
+                              删除
+                            </el-button>
+                         </li>
+              </transition-group>
                     </draggable>
                     </el-row>
         </el-col>
@@ -57,6 +56,7 @@ export default {
     return {
       gxName: "",
       wp: this.$props.wps.slice(0),
+      drag: false
     };
   },
   methods: {
@@ -110,15 +110,24 @@ export default {
   font-size: 1rem;
   text-align: center;
 }
-.wfItem {
+.wfItemHead {
   margin-left: 20%;
   text-align: left;
   padding: 10px 0px 10px 30px;
   border: 1px solid #efefef;
   font-size: 1rem;
-  width: 220px;
-  background-color: #fff;
+  width: 180px;
   display: inline-block;
+}
+.wfItem {
+  background-color: #fff;
+  
+  width: 300px;
+  list-style-type: none;
+  margin-bottom: 2px;
+  transition-property: all;
+  transition-duration: 800ms;
+  transform: translate3d(0px,0px,0px);
 }
 #placholder {
   visibility: hidden;
@@ -132,21 +141,20 @@ export default {
 }
 .deleteBtn {
   float: right;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 .process {
   color: rgb(96, 172, 235);
 }
 .workflowList-enter,
 .workflowList-leave-to {
-  padding: 0px;
-  margin: 0px;
-}
-.workflowList-enter-active {
-  transition: all .5s;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all .8s;
 }
 
 .workflowList-leave-active {
-  transition: all .5s;
+  position: absolute;
 }
+
 </style>

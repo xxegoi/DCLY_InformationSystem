@@ -14,8 +14,8 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
-  // baseURL: baseURL,
-  baseURL: 'http://localhost:56968/'
+  baseURL: baseURL,
+  // baseURL: 'http://localhost:56968/'
 })
 
 
