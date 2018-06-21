@@ -3,9 +3,10 @@
     <basic-container>
       <el-row id="print">
         <el-col :span="2"  >
-          <el-button type="primary" size="small">
+          <el-button type="primary" size="small" @click="showPrint">
             <i class="el-icon-view"></i>
-            打印预览</el-button>
+            打印预览
+          </el-button>
         </el-col>
         
       </el-row>
@@ -13,7 +14,9 @@
       <el-table size="small" v-loading="this.$store.state.YzkList.loading"
       :data="this.$store.state.YzkList.dataList"
       style="width: 100%"
-      height="385">
+      height="385"
+      ref="multipleTable" 
+      @selection-change="handleSelectionChange">
 
       <el-table-column type="selection"></el-table-column>
 
@@ -52,7 +55,8 @@ import header from './tableHeader';
   data() {
     return {
       headers:header,
-      loading:false
+      loading:false,
+      multipleSelection: [],//20180620多行选择存放处
     }
   },
   methods: {
@@ -85,7 +89,22 @@ import header from './tableHeader';
       }).catch((err) => {
         console.log(err);
       });
-    }
+    },
+    //20180620
+    handleSelectionChange(val) {
+        this.multipleSelection = val;
+    },
+    //20180620
+    showPrint()
+    {
+      if(this.multipleSelection.length==0)
+      {
+        this.$message.error("请先选择打印内容！");
+      }
+      else{
+        this.$emit("showPrint",this.multipleSelection);
+      }
+    },
   }
 }
 </script>
