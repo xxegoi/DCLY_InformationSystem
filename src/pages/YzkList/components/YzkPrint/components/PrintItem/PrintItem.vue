@@ -126,8 +126,8 @@
           </el-row>
           <el-row>
             <el-col :span="8" class="rowCell">匹数/重量</el-col>
-            <el-col :span="16" style="font-size:20px;" class="rowCell">&nbsp&nbsp&nbsp
-              <span style="font-size:15px;">{{printData.qty}}</span>匹&nbsp&nbsp
+            <el-col :span="16" style="font-size:20px;" class="rowCell">&nbsp&nbsp
+              <span style="font-size:15px;">{{printData.qty}}</span>匹&nbsp
               <span style="font-size:15px;">{{printData.weight}}</span>KG</el-col>
           </el-row>
         </el-col>
@@ -178,7 +178,6 @@
               <br/>
               &nbsp&nbsp<span><bar :value="getGH()"></bar></span>
               <br/>
-              <!-- <barcode :value="getGH()" width="2" height="30" margin="0" display-value="false"></barcode> -->
             </el-col>
           </el-row>
         </el-col>
@@ -300,8 +299,7 @@
   }
 
   .main {
-    /* height: 144.78; 299.55 306.4  309.4*/
-    height: 1120px;
+    height: 1100px; /******1120********/
     width: 793px;
     margin-left: auto;
     margin-right: auto;
