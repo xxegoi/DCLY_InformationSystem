@@ -1,11 +1,13 @@
 <template>
     <el-row :gutter="5">
         <el-col :span="8" >
-            <el-input size="small" icon="el-icon-search" placeholder="输入工序名过滤" @change="GXFilter"></el-input>
-              <el-row id="wps">
-                <draggable :list="wp" :name="'flip-list'" :duration="100" :options="{group:{name:'wf',pull:'clone',put:false,revertClone: true},sort:false}">
-                    <div v-for="item in wp" :key="item.FID" class="wpsItem">
-                      <span>{{item.FName}}</span></div>
+            <el-input size="small" icon="el-icon-search" v-model="gxName" placeholder="输入工序名过滤" ></el-input>
+              <el-row >
+                <draggable :list="wpList" :name="'flip-list'" :duration="100" :options="{group:{name:'wf',pull:'clone',put:false,revertClone: true},sort:false}">
+                    <transition-group name="wpsList" id="wps" tag="ul">
+                      <li  v-for="(item,index) in wpList" :key="index" class="wpsItem">
+                      <span>{{item.FName}}</span></li>
+                    </transition-group>
                 </draggable>
                 </el-row>
         </el-col>
@@ -19,8 +21,9 @@
                              <i v-if="index<activeIndex" class="el-icon-success success"></i>
                              <i v-else-if="index==activeIndex" class="el-icon-info process"></i>
                              <span>{{w.FName}}</span>
+                             
                           </div>
-                            <el-button v-if="index>activeIndex" size="mini" class="deleteBtn" type="danger" @click="remove(index)">
+                            <el-button v-if="index>activeIndex"  size="mini" round class="deleteBtn" type="danger" @click="remove(index)">
                               删除
                             </el-button>
                          </li>
@@ -38,6 +41,14 @@ import draggable from "vuedraggable";
 export default {
   name: "gylcModify",
   components: { draggable },
+  computed: {
+    wpList() {
+      var vm = this;
+      return this.wp.filter(function(item) {
+        return item.FName.indexOf(vm.gxName) !== -1;
+      });
+    }
+  },
   props: {
     wps: {
       type: Array,
@@ -98,17 +109,23 @@ export default {
 </script>
 
 <style scoped>
+li {
+  list-style-type: none;
+}
 #wps {
   margin-top: 5px;
   border: 1px solid #efefef;
   height: 500px;
-  overflow-y: auto;
+  padding-left: 0;
+  overflow-y:auto;
 }
 .wpsItem {
   padding: 10px;
   border-bottom: 1px solid #efefef;
   font-size: 1rem;
   text-align: center;
+  transition: all 1s;
+  transform: translateX(20px);
 }
 .wfItemHead {
   margin-left: 20%;
@@ -121,13 +138,11 @@ export default {
 }
 .wfItem {
   background-color: #fff;
-  
   width: 300px;
-  list-style-type: none;
   margin-bottom: 2px;
   transition-property: all;
   transition-duration: 800ms;
-  transform: translate3d(0px,0px,0px);
+  transform: translate3d(0px, 0px, 0px);
 }
 #placholder {
   visibility: hidden;
@@ -146,15 +161,24 @@ export default {
 .process {
   color: rgb(96, 172, 235);
 }
+.wpsList-enter,
+.wpsList-leave-to{
+  opacity: 0;
+  transition: all 1s;
+}
+.wpsList-leave-active{
+  transition: all 1s ease;
+}
+
 .workflowList-enter,
 .workflowList-leave-to {
   opacity: 0;
   transform: translateX(30px);
-  transition: all .8s;
+  transition: all 0.8s;
 }
 
 .workflowList-leave-active {
   position: absolute;
+  transition: all 1s;
 }
-
 </style>

@@ -12,9 +12,9 @@
           <el-input v-model="ruleForm.fgh" placeholder="缸号"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')"><i class="el-icon-search"/>查询</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')" :loading="this.$store.state.TestData.loading"><i class="el-icon-search"/>查询</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
-          <el-button type="success" @click="exportData('ruleForm')">导出EXCEL</el-button>
+          <el-button type="success" @click="exportData('ruleForm')" :loading="this.$store.state.TestData.loading">导出EXCEL</el-button>
         </el-form-item>
       </el-form>
     </basic-container>

@@ -27,22 +27,22 @@ const asideMenuConfig = [
       },
     ],
   },
-  // {
-  //   name: '系统管理',
-  //   path: '',
-  //   icon:'el-icon-setting',
-  //   children: [
-  //     {
-  //       name: '\u7528\u6237\u7BA1\u7406',
-  //       path: '/RoleManage',
-  //       icon: 'el-icon-setting',
-  //     },
-  //   ],
-  // },
   {
     name: '\u5DE5\u827A\u6D41\u7A0B\u7BA1\u7406',
     path: '/GylcManage',
     icon: 'el-icon-d-caret',
+  },
+  {
+    name: '系统管理',
+    path: '',
+    icon:'el-icon-setting',
+    children: [
+      {
+        name: '角色管理',
+        path: '/RoleManage',
+        icon: 'el-icon-setting',
+      },
+    ],
   },
 ];
 

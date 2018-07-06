@@ -2,7 +2,7 @@
   <div className="fixed-table">
     <basic-container>
       <el-table size="small"
-      :data="data"
+      :data="data" v-loading="this.$store.state.TestData.loading"
       style="width: 100%"
       height="400">
       <el-table-column label="完成日期" :min-width="120" prop="FinishDate"></el-table-column>
