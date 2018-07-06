@@ -1,7 +1,7 @@
 <template>
   <div className="yzk-list-page">
         <YzkQueryForm v-model="ruleForm" @submit="onSubmit"/>
-        <YzkTable @showDetail="onShowDetail"/>
+        <YzkTable @showDetail="onShowDetail" @showPrint="onShowPrint"/>
         <el-pagination
           @size-change="sizeChange"
           @current-change="currentChange"
@@ -22,6 +22,13 @@
             <el-button @click="yzkDetailVisiable= false">关 闭</el-button>
           </span>
         </el-dialog>
+
+        <el-dialog 
+          :fullscreen="true"  
+          :visible.sync="yzkPrintVisible" 
+          center >
+          <YzkPrint :printList.sync="selection" />
+        </el-dialog>
         
       </div>
 </template>
@@ -30,14 +37,15 @@
 import YzkQueryForm from "./components/YzkQueryForm";
 import YzkTable from "./components/YzkTable";
 import YzkDetail from './components/YzkDetail';
-
+import YzkPrint from "./components/YzkPrint"
 
 export default {
   name: "YzkList",
   components: {
     YzkQueryForm,
     YzkTable,
-    YzkDetail
+    YzkDetail,
+    YzkPrint,
   },
   data() {
     return {
@@ -55,7 +63,9 @@ export default {
       total: 0,
       details:{},
       yzkDetailVisiable:false,
-      yzk:{}
+      yzk:{},
+      yzkPrintVisible : false,//20180620
+      selection: [],//20180620
     };
   },
   methods: {
@@ -108,7 +118,12 @@ export default {
     onShowDetail(yzk){
       this.yzk=yzk;
       this.yzkDetailVisiable=true;
-    }
+    },
+    onShowPrint(selection){
+      // console.log(selection);
+      this.selection = selection;
+      this.yzkPrintVisible = true;
+    },
   }
 };
 </script>
