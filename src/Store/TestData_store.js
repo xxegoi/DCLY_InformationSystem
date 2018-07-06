@@ -1,10 +1,11 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
 
-Vue.use(Vuex);
-
-export const store = new Vuex.Store({
+export default{
     state: {
-        key: value
+        loading: false
+    },
+    mutations: {
+        TestData_updateloading(state, payload) {
+            state.loading = payload;
+        }
     }
-});
+};

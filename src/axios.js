@@ -6,7 +6,12 @@ var url = window.location.host;
 var baseURL = '';
 if (url.indexOf('192.168.1.116') >= 0) {
   baseURL = 'http://192.168.1.116:8124'
-} else {
+}
+else if(url.indexOf('localhost')>=0){
+  //开发环境
+  baseURL='http://localhost:56968/'
+}
+else {
   baseURL = 'http://61.143.227.36:8124'
 }
 
