@@ -33,6 +33,11 @@ const asideMenuConfig = [
     icon: 'el-icon-d-caret',
   },
   {
+    name: '新页面',
+    path: '/Test123',
+    icon: 'el-icon-rank',
+  },
+  {
     name: '系统管理',
     path: '',
     icon:'el-icon-setting',

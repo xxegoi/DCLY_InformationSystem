@@ -7,6 +7,7 @@ import yzktrack from './Store/YZKTrack_store'
 import yzklist from './Store/YzkList_store'
 import gylcManage from './Store/GylcManage_store';
 import TestData_store from './Store/TestData_store';
+import Test123_store from './Store/Test123_store';
 
 export default new Vuex.Store({
     modules:{
@@ -14,7 +15,8 @@ export default new Vuex.Store({
         YzkTrack:yzktrack,
         YzkList:yzklist,
         GylcManage:gylcManage,
-        TestData:TestData_store
+        TestData:TestData_store,
+        Test123:Test123_store,
     }
 })
 
